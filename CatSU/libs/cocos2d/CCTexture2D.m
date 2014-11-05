@@ -96,7 +96,15 @@
 #endif
 
 //CLASS IMPLEMENTATIONS:
-
+#define NSLineBreakByWordWrapping UILineBreakModeWordWrap
+#define NSLineBreakByCharWrapping UILineBreakModeCharacterWrap
+#define NSLineBreakByClipping UILineBreakModeClip
+#define NSLineBreakByTruncatingHead UILineBreakModeHeadTruncation
+#define NSLineBreakByTruncatingTail UILineBreakModeTailTruncation
+#define NSLineBreakByTruncatingMiddle UILineBreakModeMiddleTruncation
+#define NSTextAlignmentLeft UITextAlignmentLeft
+#define NSTextAlignmentRight UITextAlignmentRight
+#define NSTextAlignmentCenter UITextAlignmentCenter
 
 // If the image has alpha, you can create RGBA8 (32-bit) or RGBA4 (16-bit) or RGB5A1 (16-bit)
 // Default is: RGBA8888 (32-bit textures)

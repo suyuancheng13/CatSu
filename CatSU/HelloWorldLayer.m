@@ -9,10 +9,10 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
-
+#import "GameLayer.h"
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
-
+#import "CCButton.h"
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -42,7 +42,7 @@
 	if( (self=[super init]) ) {
 		
 		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello CatSU" fontName:@"Marker Felt" fontSize:64];
 
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
@@ -76,7 +76,6 @@
 			
 			[[app navController] presentModalViewController:achivementViewController animated:YES];
 			
-			[achivementViewController release];
 		}];
 		
 		// Leaderboard Menu Item using blocks
@@ -90,7 +89,6 @@
 			
 			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
 			
-			[leaderboardViewController release];
 		}];
 
 		
@@ -100,22 +98,20 @@
 		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
 		
 		// Add the menu to the layer
-		[self addChild:menu];
+//		[self addChild:menu];
+        CCButton *button = [[CCButton alloc]initWithTitle:@"GameStart" size:CGSizeMake(200, 60)];
+        //[button setTounFunc:&StartGame];
+        [button setDelegate:self];
+        [button setPosition:CGPointMake(size.width/2, size.height/2-50)];
+        [button setTouchEnabled:YES];
+        [self addChild:button];
+	
 
 	}
 	return self;
 }
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
-	[super dealloc];
-}
 
 #pragma mark GameKit delegate
 
@@ -129,5 +125,10 @@
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+#pragma mark-button click action
+- (void)onButtonClicked:(CCNode*)sender
+{
+    [[CCDirector sharedDirector]pushScene:[GameLayer Scene]];
 }
 @end
