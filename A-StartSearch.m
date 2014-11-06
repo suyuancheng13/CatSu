@@ -90,23 +90,30 @@
             if(![self isCollision:_successorPoint])
             {
                 PathNode *successor = [[PathNode alloc]initWithPosition:_successorPoint];
+                /*
+                 *step 3.1 parent pointer point to the best node
+                 */
                 successor.parent = bestNode;
                 successor.g = bestNode.g + 1;
                 successor.h = fabs(endPoint.x-successor.position.x)+fabs(endPoint.y - successor.position.y);
                 successor.f  = successor.g +successor.h*1.5;
                 int openIndex = [self isInOpenTable:successor];
-                if(NSNotFound==openIndex)//(NSNotFound==[_openTable indexOfObject:successor])//not in open talbe
-                {
+                if(NSNotFound==openIndex)                {
                     int closeIndex = [self isInClosedTable:successor];
-                    if(NSNotFound== closeIndex)//(NSNotFound == [_closedTable indexOfObject:successor])//not in close table
+                    if(NSNotFound== closeIndex)
                     {
-//                        [_openTable addObject:successor];
+                        /*
+                         *step 3.2 add the successor point to open table
+                         */
                         [self insertOpenTable:successor];//add to open table
                     
                         [bestNode.child addObject:successor];//add to the successor talbe of bestnode
                        
                     }
                     else {//in close table
+                        /*
+                         *step 3.3 update the value of the successor if it in close table
+                         */
                         PathNode *old = [_closedTable objectAtIndex:closeIndex];
                         if(successor.g<old.g)
                         {
@@ -117,6 +124,9 @@
                     }
                 }
                 else {//in open table
+                    /*
+                     *step3,4 update the value of the successor if it in open table
+                     */
                    PathNode *old = [_openTable objectAtIndex:openIndex];
                     if(successor.g<old.g)
                     {
