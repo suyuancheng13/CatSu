@@ -22,7 +22,7 @@
 #pragma  mark - initial of the game
 - (void)inInit
 {
-    _winSize = [[CCDirector sharedDirector]winSize];
+    _winSize = [[CCDirector sharedDirector]winSizeInPixels];
     _index = 0;
     _isMoving = NO;
     
@@ -41,6 +41,18 @@
 #define BONUES 3
 - (void)initMap
 {
+    CCSprite *board = [CCSprite spriteWithFile:@"wood_board.jpg"];
+    int boardCountW =ceil(_winSize.width/[board contentSize].width);
+    int boardCountH = ceil(_winSize.height/[board contentSize].height);
+    for (int i=0; i<=boardCountW; i++) {
+        for (int j =0; j<=boardCountH; j++) {
+            CCSprite *board = [CCSprite spriteWithFile:@"wood_board.jpg"];
+            [board setPosition:CGPointMake(i*[board contentSize].width, j*[board contentSize].height)];
+            [self addChild:board z:-1];
+        }
+    }
+   
+  //  [self addChild:board z:-1];
     CCSprite *brick = [CCSprite spriteWithFile:@"brick.jpg"];
     _unitW = [brick contentSize].width;
     _unitH = [brick contentSize].height;
@@ -60,6 +72,39 @@
                 [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
                 
             }
+            else if(j==3*columns/4&&i<rows-3)
+            {
+                CCSprite *_brick = [CCSprite spriteWithFile:@"brick.jpg"];
+                [_brick setPosition:CGPointMake(j*[_brick contentSize].width, i*[_brick contentSize].height)];
+                [self addChild:_brick];
+                [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
+                
+            }
+           else if(i==rows/2&&j>columns/2+1&&j<3*columns/4)
+            {
+                CCSprite *_brick = [CCSprite spriteWithFile:@"brick.jpg"];
+                [_brick setPosition:CGPointMake(j*[_brick contentSize].width, i*[_brick contentSize].height)];
+                [self addChild:_brick];
+                [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
+                
+            }
+           else if(i==3*rows/4&&j>columns/2&&j<3*columns/4-1)
+           {
+               CCSprite *_brick = [CCSprite spriteWithFile:@"brick.jpg"];
+               [_brick setPosition:CGPointMake(j*[_brick contentSize].width, i*[_brick contentSize].height)];
+               [self addChild:_brick];
+               [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
+               
+           }
+           else if(i==3&&j>columns/3&&j<3*columns/4-1)
+           {
+               CCSprite *_brick = [CCSprite spriteWithFile:@"brick.jpg"];
+               [_brick setPosition:CGPointMake(j*[_brick contentSize].width, i*[_brick contentSize].height)];
+               [self addChild:_brick];
+               [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
+               
+           }
+
            else if(j == columns/3&&i == rows-8)
             {
                 [_cat setPosition:CGPointMake(j*[brick contentSize].width, i*[brick contentSize].height)];
@@ -203,12 +248,12 @@
     _index = 0;
     
     CGPoint catPosition = [_cat position];
-    catPosition.x = (int) catPosition.x/_unitW;
-    catPosition.y = (int) catPosition.y/_unitH;
+    catPosition.x = floor (catPosition.x/_unitW);
+    catPosition.y = floor (catPosition.y/_unitH);
     CGPoint endPoint = [touch locationInView:[touch view]];
     endPoint.y = _winSize.height - endPoint.y;
-    endPoint.x = (int)endPoint.x/_unitW;
-    endPoint.y = (int)endPoint.y/_unitH;
+    endPoint.x = floor(endPoint.x/_unitW);
+    endPoint.y = floor(endPoint.y/_unitH);
    
     _path = [_searchEngine getPath:catPosition endPoint:endPoint];
     return  YES;

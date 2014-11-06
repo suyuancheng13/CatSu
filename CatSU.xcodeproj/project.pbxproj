@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E53D274E1A0A40F700E082A4 /* wood_board.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E53D274D1A0A40F700E082A4 /* wood_board.jpg */; };
 		E5B81B681A031DD60097D5E5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B671A031DD60097D5E5 /* QuartzCore.framework */; };
 		E5B81B6A1A031DD60097D5E5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B691A031DD60097D5E5 /* OpenGLES.framework */; };
 		E5B81B6C1A031DD60097D5E5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B6B1A031DD60097D5E5 /* OpenAL.framework */; };
@@ -289,6 +290,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E53D274D1A0A40F700E082A4 /* wood_board.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wood_board.jpg; path = Resources/wood_board.jpg; sourceTree = "<group>"; };
 		E5B81B631A031DD60097D5E5 /* CatSU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatSU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B81B671A031DD60097D5E5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E5B81B691A031DD60097D5E5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -674,6 +676,7 @@
 		E5B81B7C1A031DD60097D5E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E53D274D1A0A40F700E082A4 /* wood_board.jpg */,
 				E5B81F441A04B44A0097D5E5 /* brick.jpg */,
 				E5B81F461A05C3E90097D5E5 /* cat.jpg */,
 				E5B81B7D1A031DD60097D5E5 /* Default.png */,
@@ -1327,6 +1330,7 @@
 				E5B81B931A031DD60097D5E5 /* iTunesArtwork in Resources */,
 				E5B81F451A04B44A0097D5E5 /* brick.jpg in Resources */,
 				E5B81F471A05C3E90097D5E5 /* cat.jpg in Resources */,
+				E53D274E1A0A40F700E082A4 /* wood_board.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1620,6 +1624,7 @@
 				E5B81D2D1A031E780097D5E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
