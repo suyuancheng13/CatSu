@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="brick" tilewidth="20" tileheight="20" spacing="1" margin="1">
+  <image source="_brick.jpg" width="1890" height="1890"/>
+ </tileset>
+ <tileset firstgid="8101" name="mark" tilewidth="20" tileheight="20" spacing="1" margin="1">
+  <image source="Default.png" width="320" height="480"/>
+  <tile id="5">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="8431" name="wood_board" tilewidth="20" tileheight="20" spacing="1" margin="1">
+  <image source="wood_board.jpg" width="283" height="189"/>
+ </tileset>
+ <layer name="background" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1Fkz1mEAxuF/ZE3WEML7IpJ9Kdn3PUr2tfD9B4WyhOtDPDNOnoPr5J65T39nqSQ554Lf/OGSK675yz9uuOWOswCfe/7zwCNJOklekEEmL8kimxxy02E+ebZ8XlHAawopopgSSinjDeXpMJ8KKnlLFdXU8I5a6qgnRZqGQJ9GmnhPMy18oJWPtNFOB510Bfp000MvffTzic8M8IVBhhhmJNBnlDHGmWCSKaaZYZY55llgMdBniWW+ssIq3/jOGj9YZ4NNtgJ9ttlhlz32OeCQI37yi2NOOA30CdGA2I3YjdiN2I3YjdiN2I3YjdiN5+/GE7BSm74=
+  </data>
+ </layer>
+ <layer name="块层 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztldEKwCAIRaP//+g9DUakeb1Xe5kwtpV61BLH+KVDZvJhbF97JuZOmcu7m/v9R+vPcBX5Zu+Vgovu7dbRGiu5niDcqA8191a+Jy7SI2ruiWXFVMmNxhTt0ww3olvJjdS+Ml/F+WZmr7evyBe5+zsba72Ca9kh89SK3dPP9Dyje7Lr4jJzHzmT1W79Vs3ODh9svRkfGaZKHjqVAYc=
+  </data>
+ </layer>
+ <layer name="meta" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlUsOwCAIRL1J799TumpijCjDDLgpSZP6GR+ghNZ+q7D3iX2M9tMzPlfaGO8N7jhG889wFfFG35WCi66t5tEcK7k7Q7iIP0rurXhPXKRG1NwTy/Ipk+v1yVunEa5nbybXk/vMeBX3G+m9u3VFvMjbX2ms+QyupUP6qeX7bn+k5pm9J10Vl+n7yJ3Muvlf1TsrzmDzzZwRYaqsA/GhmRw=
+  </data>
+ </layer>
+</map>

@@ -22,7 +22,7 @@ typedef enum{NONE,CLOSED,OPEN}PATHSTATE;
 @property(nonatomic,assign)float    f;
 @property(nonatomic,assign)float    h;
 @property(nonatomic,assign)float    g;
-@property(nonatomic,readonly)CGPoint position;
+@property(nonatomic,assign)CGPoint position;
 @property(nonatomic,retain)id       parent;
 @property(nonatomic,retain)NSMutableArray *child;
 - (id)initWithPosition:(CGPoint)position;

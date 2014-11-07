@@ -23,7 +23,10 @@
     A_StartSearch   *_searchEngine;
     NSMutableArray  *_map;
     BOOL            _isMoving;
-   
+    CCTMXTiledMap   *_tiledMap;
+    CCTMXLayer      *_meta;
+    int             _mapOffsetX;
+    int             _mapOffsetY;
 }
 +(CCScene*)Scene;
 /*
@@ -54,5 +57,6 @@
  update game
  */
 - (void)updateRole;
+- (BOOL)updateMap:(CGPoint)position;
 
 @end

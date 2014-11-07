@@ -194,14 +194,14 @@
 }
 - (BOOL)isCollision:(CGPoint)point
 {
-    if(point.x<=0||point.x>_columns)
+    if(point.x<0||point.x>=_columns)
         return YES;
-    if(point.y<=0||point.y>_rows)
+    if(point.y<0||point.y>=_rows)
         return YES;
     
-    int index = (int)((point.y-1)*_columns+point.x);
+    int index = (int)(point.y*_columns+point.x);
     
-    NSNumber *num = [_map objectAtIndex:index-1];
+    NSNumber *num = [_map objectAtIndex:index];
     if(0 == [num intValue])
         return NO;
     else {
