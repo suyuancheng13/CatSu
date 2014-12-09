@@ -11,6 +11,7 @@
 #import "CatRole.h"
 #import "A-StartSearch.h"
 #import "PathNode.h"
+#import "Dijkstra+Heap.h"
 @interface GameLayer : CCLayer {
     int             _countdownNum;
     int             _unitW;
@@ -20,11 +21,13 @@
     CGSize          _winSize;
     CatRole         *_cat;
     NSArray         *_path;
-    A_StartSearch   *_searchEngine;
+//    A_StartSearch   *_searchEngine;
+    Dijkstra        *_searchEngine;
     NSMutableArray  *_map;
     BOOL            _isMoving;
     CCTMXTiledMap   *_tiledMap;
     CCTMXLayer      *_meta;
+    CCTMXLayer      *_forground;
     int             _mapOffsetX;
     int             _mapOffsetY;
 }

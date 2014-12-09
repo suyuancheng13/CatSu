@@ -15,6 +15,7 @@
 @synthesize g = _g;
 @synthesize position = _position;
 @synthesize child = _child;
+@synthesize isBlanck = _isBlanck;
 - (id)initWithPosition:(CGPoint)position
 {
     if(self = [super init])
@@ -24,6 +25,19 @@
         _g = 0 ;
         _h = 0 ;
         _f = 0;
+        _child = [[NSMutableArray alloc]init];
+    }
+    return self;
+}
+- (id)initWithPosition2:(CGPoint)position with:(NSInteger)isBlanck
+{
+    if(self = [super init])
+    {
+        _parent = nil;
+        _h = FLT_MAX ;
+        _f = 0;
+        _isBlanck = isBlanck;
+        _position = position;
         _child = [[NSMutableArray alloc]init];
     }
     return self;

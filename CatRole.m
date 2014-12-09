@@ -10,5 +10,5 @@
 
 
 @implementation CatRole
-
+@synthesize Score;
 @end

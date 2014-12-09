@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51EC8D91A0DC3FE006AE065 /* bounesTile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E51EC8D81A0DC3FE006AE065 /* bounesTile.jpg */; };
 		E53D274E1A0A40F700E082A4 /* wood_board.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E53D274D1A0A40F700E082A4 /* wood_board.jpg */; };
 		E53D27501A0C660800E082A4 /* Tiled.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E53D274F1A0C660800E082A4 /* Tiled.tmx */; };
 		E53D27521A0C740D00E082A4 /* _brick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E53D27511A0C740C00E082A4 /* _brick.jpg */; };
+		E58DCDCC1A2E9EE2000741E6 /* Dijkstra+Heap.m in Sources */ = {isa = PBXBuildFile; fileRef = E58DCDCB1A2E9EE2000741E6 /* Dijkstra+Heap.m */; };
 		E5B81B681A031DD60097D5E5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B671A031DD60097D5E5 /* QuartzCore.framework */; };
 		E5B81B6A1A031DD60097D5E5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B691A031DD60097D5E5 /* OpenGLES.framework */; };
 		E5B81B6C1A031DD60097D5E5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B81B6B1A031DD60097D5E5 /* OpenAL.framework */; };
@@ -292,9 +294,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51EC8D81A0DC3FE006AE065 /* bounesTile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bounesTile.jpg; path = Resources/bounesTile.jpg; sourceTree = "<group>"; };
 		E53D274D1A0A40F700E082A4 /* wood_board.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wood_board.jpg; path = Resources/wood_board.jpg; sourceTree = "<group>"; };
 		E53D274F1A0C660800E082A4 /* Tiled.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Tiled.tmx; path = Resources/Tiled.tmx; sourceTree = "<group>"; };
 		E53D27511A0C740C00E082A4 /* _brick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = _brick.jpg; path = Resources/_brick.jpg; sourceTree = "<group>"; };
+		E58DCDCA1A2E9EE2000741E6 /* Dijkstra+Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "Dijkstra+Heap.h"; sourceTree = "<group>"; };
+		E58DCDCB1A2E9EE2000741E6 /* Dijkstra+Heap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dijkstra+Heap.m"; sourceTree = "<group>"; };
 		E5B81B631A031DD60097D5E5 /* CatSU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatSU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B81B671A031DD60097D5E5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E5B81B691A031DD60097D5E5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -680,6 +685,7 @@
 		E5B81B7C1A031DD60097D5E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E51EC8D81A0DC3FE006AE065 /* bounesTile.jpg */,
 				E53D27511A0C740C00E082A4 /* _brick.jpg */,
 				E53D274F1A0C660800E082A4 /* Tiled.tmx */,
 				E53D274D1A0A40F700E082A4 /* wood_board.jpg */,
@@ -1097,6 +1103,8 @@
 				E5B81F3F1A0327D90097D5E5 /* CatRole.m */,
 				E5B81F411A0327FB0097D5E5 /* GameLayer.h */,
 				E5B81F421A0327FB0097D5E5 /* GameLayer.m */,
+				E58DCDCA1A2E9EE2000741E6 /* Dijkstra+Heap.h */,
+				E58DCDCB1A2E9EE2000741E6 /* Dijkstra+Heap.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1339,6 +1347,7 @@
 				E53D274E1A0A40F700E082A4 /* wood_board.jpg in Resources */,
 				E53D27501A0C660800E082A4 /* Tiled.tmx in Resources */,
 				E53D27521A0C740D00E082A4 /* _brick.jpg in Resources */,
+				E51EC8D91A0DC3FE006AE065 /* bounesTile.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,6 +1367,7 @@
 				E5B81F3D1A0326010097D5E5 /* A-StartSearch.m in Sources */,
 				E5B81F401A0327D90097D5E5 /* CatRole.m in Sources */,
 				E5B81F431A0327FB0097D5E5 /* GameLayer.m in Sources */,
+				E58DCDCC1A2E9EE2000741E6 /* Dijkstra+Heap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

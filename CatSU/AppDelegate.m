@@ -158,6 +158,7 @@
 {
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:5];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application

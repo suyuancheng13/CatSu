@@ -46,14 +46,26 @@
     _tiledMap = [[CCTMXTiledMap alloc]initWithTMXFile:@"Tiled.tmx"];
     [self addChild:_tiledMap z:-1];
     _meta = [_tiledMap layerNamed:@"meta"];
+    _forground = [_tiledMap layerNamed:@"forground"];
     [_meta setVisible:NO];
     
     _unitW = [_tiledMap tileSize].width;
     _unitH = [_tiledMap tileSize].height;
     _map = [[NSMutableArray alloc]init];
  
-    [_cat setPosition:CGPointMake(8*_unitW+_unitW/2, 8*_unitH+_unitH/2)];
-    
+//    [_cat setPosition:CGPointMake(8*_unitW+_unitW/2, 8*_unitH+_unitH/2)];
+    CCTMXObjectGroup *objects = [_tiledMap objectGroupNamed:@"objects"];
+    if(objects)
+    {
+        NSDictionary *statPoint = [objects objectNamed:@"startPoint"];
+        NSString *positionX = (NSString*) [statPoint valueForKey:@"x"];
+        NSString  *positionY = (NSString*)[statPoint valueForKey:@"y"];
+        [_cat setPosition:CGPointMake([positionX intValue]+_unitW/2, [positionY intValue]+_unitH/2)];
+    }
+    else {
+        [_cat setPosition:CGPointMake(8*_unitW+_unitW/2, 8*_unitH+_unitH/2)];
+
+    }
     for(int i =[_tiledMap mapSize].height-1;i>=0;i--)
         for(int j=0;j<[_tiledMap mapSize].width;j++)
         {
@@ -68,7 +80,10 @@
                     if(collidable&&[collidable isEqualToString:@"True"])
                     {
                         [_map addObject:[[NSNumber alloc]initWithInt:BRICK]];
-                        printf("brick:%d,%d\n",j-1,i-1);
+                        printf("brick:%d,%d\n",j,i);
+                    }
+                    else {
+                        [_map addObject:[[NSNumber alloc]initWithInt:BLANCK] ];
                     }
                     
                 }
@@ -79,12 +94,15 @@
            [_map addObject:[[NSNumber alloc]initWithInt:BLANCK]];
         }
    
-    _searchEngine = [[A_StartSearch alloc]initWithMap:_map rows:[_tiledMap mapSize].height columns:[_tiledMap mapSize].width];
+//    _searchEngine = [[A_StartSearch alloc]initWithMap:_map rows:[_tiledMap mapSize].height columns:[_tiledMap mapSize].width];
+        _searchEngine = [[Dijkstra alloc]initWithMap:_map rows:[_tiledMap mapSize].height columns:[_tiledMap mapSize].width];
+    
 //    
 }
 - (void)initRole
 {
     _cat = [CatRole spriteWithFile:@"cat.jpg"];
+    _cat.Score = 0;
     [self addChild:_cat];
 //    printf("%f,%f",[_cat contentSize].width,[_cat contentSize].height);
 //    [_cat setPosition:CGPointMake(100, 200)];
@@ -164,17 +182,25 @@
             CGPoint point;
             PathNode *node = [_path objectAtIndex:_index];
             if( [self updateMap:node.position]);
-//           {
-//                point.y = (node.position.y-1)*_unitH+_unitH/2;
-//           }
-//           else {
-//               
-//               
-//                
-//           }
-               printf("mapoffsetY:%d\n",_mapOffsetY);
+            printf("mapoffsetY:%d\n",_mapOffsetY);
             point.y = (node.position.y-_mapOffsetY)*_unitH+_unitH/2;
-            point.x = node.position.x*_unitW+_unitW/2;
+            point.x = (node.position.x- _mapOffsetX)*_unitW+_unitW/2;
+            printf("path:x=%f,y=%f\n",node.position.x,node.position.y);
+            int tileGID = 0;
+            tileGID = [_meta tileGIDAt:CGPointMake(node.position.x, [_tiledMap mapSize].height-node.position.y-1)];
+            if(0!=tileGID){
+                NSDictionary *properties = [_tiledMap propertiesForGID:tileGID];
+                if(properties){
+                    NSString *collectable = [properties valueForKey:@"Collectable"];
+                    if(collectable&&[collectable isEqualToString:@"True"])
+                    {
+                        [_meta removeTileAt:CGPointMake(node.position.x, [_tiledMap mapSize].height-node.position.y-1)];
+                        [_forground removeTileAt:CGPointMake(node.position.x, [_tiledMap mapSize].height-node.position.y-1)];
+                        _cat.Score++;
+                        printf("score:%d\n",_cat.Score);
+                    }
+                }
+            }
             [_cat setPosition:point];
 
           _index++;
@@ -190,19 +216,52 @@
 - (BOOL)updateMap:(CGPoint)position
 {
     int screenHeight = _winSize.height/_unitH;
+    int screenWidth = _winSize.width/_unitW;
+    
     if(position.y>_mapOffsetY+screenHeight-4)
     {
-        [_tiledMap setPosition:CGPointMake([_tiledMap position].x, [_tiledMap position].y-_unitH)];
-        _mapOffsetY++;
+       
+       if(_mapOffsetY<[_tiledMap mapSize].height)
+       {
+            [_tiledMap setPosition:CGPointMake([_tiledMap position].x, [_tiledMap position].y-_unitH)];
+           _mapOffsetY++;
+       }
         return YES;
     }
-//    else
-//        if(position.y<_mapOffsetY+screenHeight-4)
-//    {
-//        [_tiledMap setPosition:CGPointMake([_tiledMap position].x, [_tiledMap position].y+_unitH)];
-//        _mapOffsetY--;
-//        return YES;
-//    }
+    else
+        if(position.y<_mapOffsetY+4)
+    {
+       
+        if(_mapOffsetY>0)
+        {
+             [_tiledMap setPosition:CGPointMake([_tiledMap position].x, [_tiledMap position].y+_unitH)];
+            _mapOffsetY--;
+        }
+        
+        return YES;
+    }
+    if(position.x>_mapOffsetX+screenWidth-4)
+    {
+       
+        if(_mapOffsetX<[_tiledMap mapSize].width)
+        {
+             [_tiledMap setPosition:CGPointMake([_tiledMap position].x-_unitW, [_tiledMap position].y)];
+            _mapOffsetX++;
+        }
+        return YES;
+    }
+    else
+        if(position.x<_mapOffsetX+4)
+        {
+            
+            if(_mapOffsetX>0)
+            {
+                [_tiledMap setPosition:CGPointMake([_tiledMap position].x+_unitW, [_tiledMap position].y)];
+            _mapOffsetX--;
+            }
+            return YES;
+        }
+
     return NO;
 }
 /*
@@ -215,11 +274,11 @@
     _index = 0;
     
     CGPoint catPosition = [_cat position];
-    catPosition.x = floor (catPosition.x/_unitW);
-    catPosition.y = floor (catPosition.y/_unitH);
+    catPosition.x = floor (catPosition.x/_unitW)+_mapOffsetX;
+    catPosition.y = floor (catPosition.y/_unitH)+_mapOffsetY;
     CGPoint endPoint = [touch locationInView:[touch view]];
     endPoint.y = _winSize.height - endPoint.y;
-    endPoint.x = floor(endPoint.x/_unitW);
+    endPoint.x = floor(endPoint.x/_unitW)+_mapOffsetX;
     endPoint.y = floor(endPoint.y/_unitH)+_mapOffsetY;
    
     _path = [_searchEngine getPath:catPosition endPoint:endPoint];

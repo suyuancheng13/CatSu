@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 @interface CatRole : CCSprite {
-    
+    int             _score;
 }
-
+@property(nonatomic,assign)int Score;
 @end
